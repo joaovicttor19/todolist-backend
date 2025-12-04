@@ -27,6 +27,11 @@ export class TasksController {
     return this.tasksService.create(req.user.userId, dto);
   }
 
+  @Get('by-tags')
+  findByTagNames(@Req() req, @Query('names') names: string) {
+    return this.tasksService.findByTagNames(req.user.userId, names);
+  }
+
   @Get()
   findAll(@Req() req: AuthRequest, @Query() filter: FilterTasksDto) {
     return this.tasksService.findAll(req.user.userId, filter);

@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsEnum,
   IsInt,
   IsNotEmpty,
@@ -26,4 +27,9 @@ export class CreateTaskDto {
   @IsString()
   @IsOptional()
   description?: string;
+
+  @IsArray()
+  @IsInt({ each: true })
+  @IsOptional()
+  tagIds?: number[];
 }

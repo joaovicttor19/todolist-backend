@@ -1,5 +1,6 @@
 import {
   BelongsTo,
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -9,6 +10,8 @@ import {
 import { Optional } from 'sequelize';
 import { TaskStatus } from './task-status.enum';
 import { User } from '../users/user.model';
+import { Tag } from '../tags/tag.model';
+import { TaskTag } from '../tags/task-tag.model';
 
 export interface TaskAttributes {
   id: number;
@@ -70,4 +73,7 @@ export class Task
 
   @BelongsTo(() => User)
   declare user?: User;
+
+  @BelongsToMany(() => Tag, () => TaskTag)
+  declare tags?: Tag[];
 }
